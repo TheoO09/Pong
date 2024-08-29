@@ -21,6 +21,19 @@ let pararRaqueteOp = false
 let meusPontos = 0;
 let pontosOp = 0;
 
+let raquetada;
+let ponto;
+let trilha
+
+let dificuldadeBot = 100
+
+function preload(){
+
+  raquetada = loadSound("raquetada.mp3");
+  ponto = loadSound("ponto.mp3");
+  trilha = loadSound("trilha.mp3");
+}
+
 function desenhaBola(){
   
   circle(xBolinha, yBolinha, diametro);
@@ -79,6 +92,7 @@ function colisaoRaquete() {
       
     velocidadeXbolinha *= -1;
     xBolinha = xMeuRect + larguraRect + raio;
+    raquetada.play();
   }
 }
 
@@ -89,13 +103,14 @@ function colisaoRaqueteOp() {
       
     velocidadeXbolinha *= -1;
     xBolinha = xRectOp - raio;
+    raquetada.play();
   }
 }
 
 function movimentoRaqueteOp(){
   
   if(pararRaqueteOp){
-  velocidadeYop = yBolinha - yRectOp - larguraRect / 2 - 100;
+  velocidadeYop = yBolinha - yRectOp - larguraRect / 2 - dificuldadeBot;
   yRectOp += velocidadeYop;
   }
   
@@ -119,15 +134,18 @@ function marcaPonto(){
   
   if(xBolinha - raio < 1){
     pontosOp ++
+    ponto.play();
   }
   if(xBolinha + raio > 600){
     meusPontos ++
+    ponto.play();
   }
 }
 
 
 function setup() {
   createCanvas(600, 400);
+  trilha.loop();
 }
 
 function draw() {
