@@ -148,7 +148,7 @@ function draw() {
 
   colisaoRaqueteOp();
   
-  //movimentoRaqueteOp();
+  movimentoRaqueteOp();
   
   placarJogo();
   marcaPonto();
