@@ -20,7 +20,7 @@ let xMeuRect = 1
 let yMeuRect = 135
 
 //Variáveis referentes a velocidade da bolinha e angulação de início dela
-let velocidadeXbolinha = 9
+let velocidadeXbolinha = 15
 let velocidadeYbolinha = 3
 
 //Variável usada para parar o movimento da raquete do bot em caso de fuga do espaçamento jogável
@@ -37,7 +37,7 @@ let trilha
 
 //Variáveis para determinar um atraso do tempo de reação do bot para aumentar ou diminuir a dificuldade
 let tempoReacaoBot = 0
-let delayBot = 5; //Determina a dificuldade
+let delayBot = 25; //Determina a dificuldade
 let yObjetivoBot = 135;
 
 //Inclusão dos sons no jogo
@@ -111,7 +111,6 @@ function colisaoRaquete() {
       yBolinha + raio > yMeuRect) {
       
     velocidadeXbolinha *= -1;
-    velocidadeXbolinha += 0.1;
     xBolinha = xMeuRect + larguraRect + raio;
     raquetada.play();
     raquetada.setVolume(0.3);
@@ -125,7 +124,6 @@ function colisaoRaqueteOp() {
       yBolinha + raio > yRectOp) {
       
     velocidadeXbolinha *= -1;
-    velocidadeXbolinha += 0.1;
     xBolinha = xRectOp - raio;
     raquetada.play();
     raquetada.setVolume(0.3);
@@ -136,7 +134,7 @@ function colisaoRaqueteOp() {
 function movimentoRaqueteOp() {
   if (!pararRaqueteOp) return;
   
-  tempoReacaoBot += 2;
+  tempoReacaoBot += 1;
   if (tempoReacaoBot > delayBot) {
     yObjetivoBot = yBolinha - alturaRect / 2; 
     tempoReacaoBot = 0; 
@@ -214,7 +212,7 @@ function draw() {
   marcaPonto();
   
   //Verifica a posição da bolinha para que a raquete do oponente não saia da área jogável
-  if(yBolinha > 390 || yBolinha < 50){
+  if(yBolinha > 390 || yBolinha < 30){
     
     pararRaqueteOp = false;
   } else {
